@@ -34,7 +34,7 @@ export default {
 			userID = env.UUID || userID;
 			พร็อกซีไอพี = env.PROXYIP || พร็อกซีไอพี;
 			dohURL = env.DNS_RESOLVER_URL || dohURL;
-			let userName = env.UserName;
+			let userNickName = env.UserName;
 			let userID_Path = userID;
 			if (userID.includes(',')) {
 				userID_Path = userID.split(',')[0];
@@ -844,7 +844,7 @@ function สร้างวเลสSub(ไอดีผู้ใช้_เส้
 	const ผลลัพธ์ = อาร์เรย์ไอดีผู้ใช้.flatMap((ไอดีผู้ใช้) => {
 		const การกำหนดค่าHttp = Array.from(เซ็ตพอร์ตHttp).flatMap((พอร์ต) => {
 			if (!ชื่อโฮสต์.includes('pages.dev')) {
-				const ส่วนUrl = `${UserName}-${ชื่อโฮสต์}-HTTP-${พอร์ต}`;
+				const ส่วนUrl = `${userNickName}-${ชื่อโฮสต์}-HTTP-${พอร์ต}`;
 				const วเลสหลักHttp = atob(pt) + '://' + ไอดีผู้ใช้ + atob(at) + ชื่อโฮสต์ + ':' + พอร์ต + ส่วนUrlทั่วไปHttp + ส่วนUrl;
 				return พร็อกซีไอพีs.flatMap((พร็อกซีไอพี) => {
 					const วเลสรองHttp = atob(pt) + '://' + ไอดีผู้ใช้ + atob(at) + พร็อกซีไอพี + ':' + พอร์ต + ส่วนUrlทั่วไปHttp + ส่วนUrl + '-' + พร็อกซีไอพี + '-' + atob(ed);
@@ -855,7 +855,7 @@ function สร้างวเลสSub(ไอดีผู้ใช้_เส้
 		});
 
 		const การกำหนดค่าHttps = Array.from(เซ็ตพอร์ตHttps).flatMap((พอร์ต) => {
-			const ส่วนUrl = `${UserName}-${ชื่อโฮสต์}-HTTPS-${พอร์ต}`;
+			const ส่วนUrl = `${userNickName}-${ชื่อโฮสต์}-HTTPS-${พอร์ต}`;
 			const วเลสหลักHttps = atob(pt) + '://' + ไอดีผู้ใช้ + atob(at) + ชื่อโฮสต์ + ':' + พอร์ต + ส่วนUrlทั่วไปHttps + ส่วนUrl;
 			return พร็อกซีไอพีs.flatMap((พร็อกซีไอพี) => {
 				const วเลสรองHttps = atob(pt) + '://' + ไอดีผู้ใช้ + atob(at) + พร็อกซีไอพี + ':' + พอร์ต + ส่วนUrlทั่วไปHttps + ส่วนUrl + '-' + พร็อกซีไอพี + '-' + atob(ed);
