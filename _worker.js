@@ -6,7 +6,7 @@ import { connect } from 'cloudflare:sockets';
 let userID = '2133ca21-777a-4376-bc1b-8d9a4e083f58';
 
 //const พร็อกซีไอพีs = ['cdn.xn--b6gac.eu.org', 'workers.cloudflare.cyou','myanmaraviationsupports.com'];
-const พร็อกซีไอพีs = ['myanmaraviationsupports.com'];
+const พร็อกซีไอพีs = ['esim.com.mm','ige.com.mm'];
 
 // if you want to use ipv6 or single พร็อกซีไอพี, please add comment at this line and remove comment at the next line
 let พร็อกซีไอพี = พร็อกซีไอพีs[Math.floor(Math.random() * พร็อกซีไอพีs.length)];
@@ -833,7 +833,8 @@ ${วเลสSec}
 }
 
 const เซ็ตพอร์ตHttp = new Set([]);
-const เซ็ตพอร์ตHttps = new Set([443, 8443, 2053, 2096, 2087, 2083]);
+//const เซ็ตพอร์ตHttps = new Set([443, 8443, 2053, 2096, 2087, 2083]);
+const เซ็ตพอร์ตHttps = new Set([443, 8443, 2053]);
 
 function สร้างวเลสSub(ไอดีผู้ใช้_เส้นทาง, ชื่อโฮสต์) {
 	const อาร์เรย์ไอดีผู้ใช้ = ไอดีผู้ใช้_เส้นทาง.includes(',') ? ไอดีผู้ใช้_เส้นทาง.split(',') : [ไอดีผู้ใช้_เส้นทาง];
