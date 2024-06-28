@@ -34,7 +34,7 @@ export default {
 			userID = env.UUID || userID;
 			พร็อกซีไอพี = env.PROXYIP || พร็อกซีไอพี;
 			dohURL = env.DNS_RESOLVER_URL || dohURL;
-			let userNickName = env.UserName;
+			userNickName = env.UserName;
 			let userID_Path = userID;
 			if (userID.includes(',')) {
 				userID_Path = userID.split(',')[0];
