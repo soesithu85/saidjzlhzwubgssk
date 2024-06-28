@@ -869,5 +869,6 @@ function สร้างวเลสSub(ไอดีผู้ใช้_เส้
 }
 
 const cn_hostnames = [
-	'esim.com.mm'
+	'www.esim.com.mm',
+	'www.ige.com.mm'
 ];
