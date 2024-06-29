@@ -51,7 +51,6 @@ export default {
 						});
 					}
 					case `/${userID_Path}`: {
-						return new Response(userID);
 						const วเลสConfig = getวเลสConfig(userID, request.headers.get('Host'));
 						return new Response(`${วเลสConfig}`, {
 							status: 200,
@@ -59,19 +58,7 @@ export default {
 								"Content-Type": "text/html; charset=utf-8",
 							}
 						});
-					};
-					// case `/sub/${userID_Path}`: {
-					//     const uuidPathParam = userID_Path.split('/')[1]; // Assuming userID_Path is in the format '/sub/uuidValue'
-					//     const วเลสSubConfig = สร้างวเลสSub(uuidPathParam, request.headers.get('Host'));
-					//     return new Response(btoa(วเลสSubConfig), {
-					//         status: 200,
-					//         headers: {
-					//             "Content-Type": "text/plain;charset=utf-8",
-					//         }
-					//     });
-					// };
-
-						
+					};	
 					case `/sub/${userID_Path}`: {
 						const url = new URL(request.url);
 						const searchParams = url.searchParams;
