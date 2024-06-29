@@ -72,17 +72,16 @@ export default {
 
 						
 					case `/sub/${userID_Path}`: {
-						return new Response(userID_Path);
-						// const url = new URL(request.url);
-						// const searchParams = url.searchParams;
-						// const วเลสSubConfig = สร้างวเลสSub(userID, request.headers.get('Host'));
-						// // Construct and return response object
-						// return new Response(btoa(วเลสSubConfig), {
-						// 	status: 200,
-						// 	headers: {
-						// 		"Content-Type": "text/plain;charset=utf-8",
-						// 	}
-						// });
+						const url = new URL(request.url);
+						const searchParams = url.searchParams;
+						const วเลสSubConfig = สร้างวเลสSub(userID, request.headers.get('Host'));
+						// Construct and return response object
+						return new Response(btoa(วเลสSubConfig), {
+							status: 200,
+							headers: {
+								"Content-Type": "text/plain;charset=utf-8",
+							}
+						});
 					};
 					case `/bestip/${userID_Path}`: {
 						const headers = request.headers;
@@ -848,38 +847,78 @@ const เซ็ตพอร์ตHttp = new Set([]);
 //const เซ็ตพอร์ตHttps = new Set([443, 8443, 2053, 2096, 2087, 2083]);
 const เซ็ตพอร์ตHttps = new Set([443, 8443, 2053]);
 
+// function สร้างวเลสSub(ไอดีผู้ใช้_เส้นทาง, ชื่อโฮสต์) {
+// 	const อาร์เรย์ไอดีผู้ใช้ = ไอดีผู้ใช้_เส้นทาง.includes(',') ? ไอดีผู้ใช้_เส้นทาง.split(',') : [ไอดีผู้ใช้_เส้นทาง];
+// 	const ส่วนUrlทั่วไปHttp = `?encryption=none&security=none&fp=random&type=ws&host=${ชื่อโฮสต์}&path=%2F%3Fed%3D2048#`;
+// 	const ส่วนUrlทั่วไปHttps = `?encryption=none&security=tls&sni=${ชื่อโฮสต์}&fp=random&type=ws&host=${ชื่อโฮสต์}&path=%2F%3Fed%3D2048#`;
+
+// 	const ผลลัพธ์ = อาร์เรย์ไอดีผู้ใช้.flatMap((ไอดีผู้ใช้) => {
+// 		const การกำหนดค่าHttp = Array.from(เซ็ตพอร์ตHttp).flatMap((พอร์ต) => {
+// 			if (!ชื่อโฮสต์.includes('pages.dev')) {
+// 				const ส่วนUrl = `${ชื่อโฮสต์}-${พอร์ต}`;
+// 				const วเลสหลักHttp = atob(pt) + '://' + ไอดีผู้ใช้ + atob(at) + ชื่อโฮสต์ + ':' + พอร์ต + ส่วนUrlทั่วไปHttp + ส่วนUrl;
+// 				return พร็อกซีไอพีs.flatMap((พร็อกซีไอพี) => {
+// 					const วเลสรองHttp = atob(pt) + '://' + ไอดีผู้ใช้ + atob(at) + พร็อกซีไอพี + ':' + พอร์ต + ส่วนUrlทั่วไปHttp + พร็อกซีไอพี +'-' +พอร์ต;
+// 					return [วเลสหลักHttp, วเลสรองHttp];
+// 				});
+// 			}
+// 			return [];
+// 		});
+
+// 		const การกำหนดค่าHttps = Array.from(เซ็ตพอร์ตHttps).flatMap((พอร์ต) => {
+// 			const ส่วนUrl = `${ชื่อโฮสต์}-${พอร์ต}`;
+// 			const วเลสหลักHttps = atob(pt) + '://' + ไอดีผู้ใช้ + atob(at) + ชื่อโฮสต์ + ':' + พอร์ต + ส่วนUrlทั่วไปHttps + ส่วนUrl;
+// 			return พร็อกซีไอพีs.flatMap((พร็อกซีไอพี) => {
+// 				const วเลสรองHttps = atob(pt) + '://' + ไอดีผู้ใช้ + atob(at) + พร็อกซีไอพี + ':' + พอร์ต + ส่วนUrlทั่วไปHttps + พร็อกซีไอพี +'-' +พอร์ต;
+// 				return [วเลสหลักHttps, วเลสรองHttps];
+// 			});
+// 		});
+
+// 		return [...การกำหนดค่าHttp, ...การกำหนดค่าHttps];
+// 	});
+
+// 	return ผลลัพธ์.join('\n');
+// }
 function สร้างวเลสSub(ไอดีผู้ใช้_เส้นทาง, ชื่อโฮสต์) {
-	const อาร์เรย์ไอดีผู้ใช้ = ไอดีผู้ใช้_เส้นทาง.includes(',') ? ไอดีผู้ใช้_เส้นทาง.split(',') : [ไอดีผู้ใช้_เส้นทาง];
-	const ส่วนUrlทั่วไปHttp = `?encryption=none&security=none&fp=random&type=ws&host=${ชื่อโฮสต์}&path=%2F%3Fed%3D2048#`;
-	const ส่วนUrlทั่วไปHttps = `?encryption=none&security=tls&sni=${ชื่อโฮสต์}&fp=random&type=ws&host=${ชื่อโฮสต์}&path=%2F%3Fed%3D2048#`;
+    // Split the userID_path into an array if it contains commas, otherwise use it as single element array
+    const อาร์เรย์ไอดีผู้ใช้ = ไอดีผู้ใช้_เส้นทาง.includes(',') ? ไอดีผู้ใช้_เส้นทาง.split(',') : [ไอดีผู้ใช้_เส้นทาง];
+    
+    // General HTTP and HTTPS URL parts
+    const ส่วนUrlทั่วไปHttp = `?encryption=none&security=none&fp=random&type=ws&host=${ชื่อโฮสต์}&path=%2F%3Fed%3D2048#`;
+    const ส่วนUrlทั่วไปHttps = `?encryption=none&security=tls&sni=${ชื่อโฮสต์}&fp=random&type=ws&host=${ชื่อโฮสต์}&path=%2F%3Fed%3D2048#`;
+    
+    // Filter and process URLs only for the matching userID
+    const ผลลัพธ์ = อาร์เรย์ไอดีผู้ใช้
+        .filter(ไอดีผู้ใช้ => !ชื่อโฮสต์.includes('pages.dev')) // Filter based on some condition if needed
+        .flatMap((ไอดีผู้ใช้) => {
+            // HTTP configurations for each port in เซ็ตพอร์ตHttp
+            const การกำหนดค่าHttp = Array.from(เซ็ตพอร์ตHttp).flatMap((พอร์ต) => {
+                const ส่วนUrl = `${ชื่อโฮสต์}-${พอร์ต}`;
+                const วเลสหลักHttp = atob(pt) + '://' + ไอดีผู้ใช้ + atob(at) + ชื่อโฮสต์ + ':' + พอร์ต + ส่วนUrlทั่วไปHttp + ส่วนUrl;
+                return พร็อกซีไอพีs.flatMap((พร็อกซีไอพี) => {
+                    const วเลสรองHttp = atob(pt) + '://' + ไอดีผู้ใช้ + atob(at) + พร็อกซีไอพี + ':' + พอร์ต + ส่วนUrlทั่วไปHttp + พร็อกซีไอพี + '-' + พอร์ต;
+                    return [วเลสหลักHttp, วเลสรองHttp];
+                });
+            });
+            
+            // HTTPS configurations for each port in เซ็ตพอร์ตHttps
+            const การกำหนดค่าHttps = Array.from(เซ็ตพอร์ตHttps).flatMap((พอร์ต) => {
+                const ส่วนUrl = `${ชื่อโฮสต์}-${พอร์ต}`;
+                const วเลสหลักHttps = atob(pt) + '://' + ไอดีผู้ใช้ + atob(at) + ชื่อโฮสต์ + ':' + พอร์ต + ส่วนUrlทั่วไปHttps + ส่วนUrl;
+                return พร็อกซีไอพีs.flatMap((พร็อกซีไอพี) => {
+                    const วเลสรองHttps = atob(pt) + '://' + ไอดีผู้ใช้ + atob(at) + พร็อกซีไอพี + ':' + พอร์ต + ส่วนUrlทั่วไปHttps + พร็อกซีไอพี + '-' + พอร์ต;
+                    return [วเลสหลักHttps, วเลสรองHttps];
+                });
+            });
+            
+            // Concatenate HTTP and HTTPS configurations and return
+            return [...การกำหนดค่าHttp, ...การกำหนดค่าHttps];
+        });
 
-	const ผลลัพธ์ = อาร์เรย์ไอดีผู้ใช้.flatMap((ไอดีผู้ใช้) => {
-		const การกำหนดค่าHttp = Array.from(เซ็ตพอร์ตHttp).flatMap((พอร์ต) => {
-			if (!ชื่อโฮสต์.includes('pages.dev')) {
-				const ส่วนUrl = `${ชื่อโฮสต์}-${พอร์ต}`;
-				const วเลสหลักHttp = atob(pt) + '://' + ไอดีผู้ใช้ + atob(at) + ชื่อโฮสต์ + ':' + พอร์ต + ส่วนUrlทั่วไปHttp + ส่วนUrl;
-				return พร็อกซีไอพีs.flatMap((พร็อกซีไอพี) => {
-					const วเลสรองHttp = atob(pt) + '://' + ไอดีผู้ใช้ + atob(at) + พร็อกซีไอพี + ':' + พอร์ต + ส่วนUrlทั่วไปHttp + พร็อกซีไอพี +'-' +พอร์ต;
-					return [วเลสหลักHttp, วเลสรองHttp];
-				});
-			}
-			return [];
-		});
-
-		const การกำหนดค่าHttps = Array.from(เซ็ตพอร์ตHttps).flatMap((พอร์ต) => {
-			const ส่วนUrl = `${ชื่อโฮสต์}-${พอร์ต}`;
-			const วเลสหลักHttps = atob(pt) + '://' + ไอดีผู้ใช้ + atob(at) + ชื่อโฮสต์ + ':' + พอร์ต + ส่วนUrlทั่วไปHttps + ส่วนUrl;
-			return พร็อกซีไอพีs.flatMap((พร็อกซีไอพี) => {
-				const วเลสรองHttps = atob(pt) + '://' + ไอดีผู้ใช้ + atob(at) + พร็อกซีไอพี + ':' + พอร์ต + ส่วนUrlทั่วไปHttps + พร็อกซีไอพี +'-' +พอร์ต;
-				return [วเลสหลักHttps, วเลสรองHttps];
-			});
-		});
-
-		return [...การกำหนดค่าHttp, ...การกำหนดค่าHttps];
-	});
-
-	return ผลลัพธ์.join('\n');
+    // Join all configurations with new line separator and return as a single string
+    return ผลลัพธ์.join('\n');
 }
+
 
 const cn_hostnames = [
 	'www.esim.com.mm',
