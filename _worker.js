@@ -58,7 +58,7 @@ export default {
 								"Content-Type": "text/html; charset=utf-8",
 							}
 						});
-					};	
+					};
 					case `/sub/${userID_Path}`: {
 						const url = new URL(request.url);
 						const searchParams = url.searchParams;
@@ -836,7 +836,6 @@ const เซ็ตพอร์ตHttp = new Set([]);
 const เซ็ตพอร์ตHttps = new Set([443, 8443, 2053]);
 
 function สร้างวเลสSub(ไอดีผู้ใช้_เส้นทาง, ชื่อโฮสต์) {
-	
 	const อาร์เรย์ไอดีผู้ใช้ = ไอดีผู้ใช้_เส้นทาง.includes(',') ? ไอดีผู้ใช้_เส้นทาง.split(',') : [ไอดีผู้ใช้_เส้นทาง];
 	const ส่วนUrlทั่วไปHttp = `?encryption=none&security=none&fp=random&type=ws&host=${ชื่อโฮสต์}&path=%2F%3Fed%3D2048#`;
 	const ส่วนUrlทั่วไปHttps = `?encryption=none&security=tls&sni=${ชื่อโฮสต์}&fp=random&type=ws&host=${ชื่อโฮสต์}&path=%2F%3Fed%3D2048#`;
@@ -868,6 +867,7 @@ function สร้างวเลสSub(ไอดีผู้ใช้_เส้
 
 	return ผลลัพธ์.join('\n');
 }
+
 const cn_hostnames = [
 	'www.esim.com.mm',
 	'www.ige.com.mm'
