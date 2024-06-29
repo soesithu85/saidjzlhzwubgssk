@@ -59,30 +59,31 @@ export default {
 							}
 						});
 					};
-					case `/sub/${userID_Path}`: {
-					    const uuidPathParam = userID_Path.split('/')[1]; // Assuming userID_Path is in the format '/sub/uuidValue'
-					    const วเลสSubConfig = สร้างวเลสSub(uuidPathParam, request.headers.get('Host'));
-					    return new Response(btoa(วเลสSubConfig), {
-					        status: 200,
-					        headers: {
-					            "Content-Type": "text/plain;charset=utf-8",
-					        }
-					    });
-					};
+					// case `/sub/${userID_Path}`: {
+					//     const uuidPathParam = userID_Path.split('/')[1]; // Assuming userID_Path is in the format '/sub/uuidValue'
+					//     const วเลสSubConfig = สร้างวเลสSub(uuidPathParam, request.headers.get('Host'));
+					//     return new Response(btoa(วเลสSubConfig), {
+					//         status: 200,
+					//         headers: {
+					//             "Content-Type": "text/plain;charset=utf-8",
+					//         }
+					//     });
+					// };
 
 						
-					// case `/sub/${userID_Path}`: {
-					// 	const url = new URL(request.url);
-					// 	const searchParams = url.searchParams;
-					// 	const วเลสSubConfig = สร้างวเลสSub(userID, request.headers.get('Host'));
-					// 	// Construct and return response object
-					// 	return new Response(btoa(วเลสSubConfig), {
-					// 		status: 200,
-					// 		headers: {
-					// 			"Content-Type": "text/plain;charset=utf-8",
-					// 		}
-					// 	});
-					// };
+					case `/sub/${userID_Path}`: {
+						return new Response(userID_Path);
+						// const url = new URL(request.url);
+						// const searchParams = url.searchParams;
+						// const วเลสSubConfig = สร้างวเลสSub(userID, request.headers.get('Host'));
+						// // Construct and return response object
+						// return new Response(btoa(วเลสSubConfig), {
+						// 	status: 200,
+						// 	headers: {
+						// 		"Content-Type": "text/plain;charset=utf-8",
+						// 	}
+						// });
+					};
 					case `/bestip/${userID_Path}`: {
 						const headers = request.headers;
 						const url = `https://sub.xf.free.hr/auto?host=${request.headers.get('Host')}&uuid=${userID}&path=/`;
